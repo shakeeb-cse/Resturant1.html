@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jomato | Modern Indian & Global Dine-In Restaurant</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        jomato: {
+                            orange: '#FC8019',
+                            orangeHover: '#e56f0d',
+                            orangeLight: '#FFF3E8',
+                            charcoal: '#1C1C1C',
+                            slate: '#686B78',
+                            bg: '#F8F9FA',
+                            veg: '#0F8A65',
+                            nonveg: '#E43B4F'
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px -2px rgba(28, 28, 28, 0.06)',
+                        'card-hover': '0 14px 30px -4px rgba(28, 28, 28, 0.12)',
+                        'orange-glow': '0 10px 25px -5px rgba(252, 128, 25, 0.35)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for clean Swiggy-inspired UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4D5D9;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FC8019;
+        }
+        /* Hide scrollbar on horizontal category strip */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-jomato-bg text-jomato-charcoal font-sans antialiased selection:bg-jomato-orange selection:text-white">
+
+    <!-- 1. STICKY NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand Logo: Jomato with Custom Fork/Flame SVG -->
+                <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="w-11 h-11 rounded-2xl bg-jomato-orange flex items-center justify-center shadow-orange-glow group-hover:scale-105 transition-transform duration-200">
+                        <!-- Custom Signature Restaurant Fork & Flame SVG -->
+                        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C9.5 5.2 7.5 7.8 7.5 11.2C7.5 13.9 9.5 16 12 16C14.5 16 16.5 13.9 16.5 11.2C16.5 9.6 15.8 8.1 14.8 6.8C14.5 8.1 13.6 8.9 12.6 8.9C11.4 8.9 10.6 7.9 10.8 6.6C11 5.1 11.5 3.6 12 2Z" fill="currentColor"/>
+                            <path d="M9 15.5V21C9 21.5523 9.44772 22 10 22H14C14.5523 22 15 21.5523 15 21V15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 16V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-extrabold text-2xl tracking-tight text-jomato-charcoal leading-none">
+                            jomato<span class="text-jomato-orange">.</span>
+                        </span>
+                        <span class="text-[11px] font-semibold uppercase tracking-widest text-jomato-slate mt-1">
+                            Kitchen & Dining
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-jomato-charcoal">
+                    <a href="#home" class="hover:text-jomato-orange transition-colors py-2">Home</a>
+                    <a href="#menu" class="hover:text-jomato-orange transition-colors py-2">Menu</a>
+                    <a href="#offers" class="hover:text-jomato-orange transition-colors py-2 flex items-center gap-1.5">
+                        <span>Offers & Combos</span>
+                        <span class="px-1.5 py-0.5 text-[10px] font-bold bg-jomato-orangeLight text-jomato-orange rounded-md">NEW</span>
+                    </a>
+                    <a href="#reviews" class="hover:text-jomato-orange transition-colors py-2">Reviews</a>
+                    <a href="#location" class="hover:text-jomato-orange transition-colors py-2">Location & Hours</a>
+                </nav>
+
+                <!-- Action Buttons: Table Shortlist + Book a Table CTA -->
+                <div class="flex items-center gap-3">
+                    <!-- Table Dish Shortlist Drawer Button -->
+                    <button onclick="toggleShortlist()" class="relative inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-gray-50 hover:bg-jomato-orangeLight text-jomato-charcoal hover:text-jomato-orange border border-gray-200 transition-all text-sm font-semibold" aria-label="Open Table Dish Shortlist">
+                        <i data-lucide="utensils" class="w-4 h-4 text-jomato-orange"></i>
+                        <span class="hidden lg:inline">Table Shortlist</span>
+                        <span id="shortlist-count" class="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-jomato-orange rounded-full">
+                            0
+                        </span>
+                    </button>
+
+                    <!-- Primary Book a Table CTA -->
+                    <a href="#reserve-section" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-jomato-orange hover:bg-jomato-orangeHover text-white font-display font-bold text-sm shadow-orange-glow transition-all active:scale-95">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                        <span>Book a Table</span>
+                    </a>
+
+                    <!-- Mobile Menu Hamburger Button -->
+                    <button onclick="toggleMobileNav()" id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-jomato-charcoal transition-colors" aria-label="Toggle Menu">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-nav" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-3 pb-6 space-y-2 shadow-lg">
+            <a href="#home" onclick="toggleMobileNav()" class="block px-4 py-3 rounded-xl font-semibold text-jomato-charcoal hover:bg-jomato-orangeLight hover:text-jomato-orange transition-colors">Home</a>
+            <a href="#menu" onclick="toggleMobileNav()" class="block px-4 py-3 rounded-xl font-semibold text-jomato-charcoal hover:bg-jomato-orangeLight hover:text-jomato-orange transition-colors">Dining Menu</a>
+            <a href="#offers" onclick="toggleMobileNav()" class="block px-4 py-3 rounded-xl font-semibold text-jomato-charcoal hover:bg-jomato-orangeLight hover:text-jomato-orange transition-colors">Offers & Combos</a>
+            <a href="#reviews" onclick="toggleMobileNav()" class="block px-4 py-3 rounded-xl font-semibold text-jomato-charcoal hover:bg-jomato-orangeLight hover:text-jomato-orange transition-colors">Guest Reviews</a>
+            <a href="#location" onclick="toggleMobileNav()" class="block px-4 py-3 rounded-xl font-semibold text-jomato-charcoal hover:bg-jomato-orangeLight hover:text-jomato-orange transition-colors">Location & Hours</a>
+            <div class="pt-2">
+                <a href="#reserve-section" onclick="toggleMobileNav()" class="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-jomato-orange text-white font-display font-bold text-sm shadow-orange-glow">
+                    <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                    <span>Book a Table Now</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="relative bg-white pt-8 pb-16 sm:pt-12 sm:pb-24 overflow-hidden border-b border-gray-100">
+        <!-- Subtle Decorative Orange Accent Blob -->
+        <div class="hidden lg:block absolute -top-24 -right-24 w-[480px] h-[480px] rounded-full bg-jomato-orangeLight/70 pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Left Column: Bold Swiggy-Inspired Typography & Dine-In Value Props -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <!-- Dine-In Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-jomato-orangeLight border border-orange-200 text-jomato-orange text-xs font-bold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-jomato-orange animate-ping"></span>
+                        <span>Flagship Dine-In & Rooftop Lounge • Bengaluru</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[54px] text-jomato-charcoal tracking-tight leading-[1.12]">
+                        Crafted for the Table. <br class="hidden sm:inline">
+                        <span class="text-jomato-orange">Savor Every Moment.</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-base sm:text-lg text-jomato-slate leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Experience authentic wood-fired tandoor grills, hand-ground heirloom spices, and vibrant artisanal platters served piping hot straight from our live kitchen to your table.
+                    </p>
+
+                    <!-- Quick Dining Status Pills -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-bold">
+                            <span class="bg-jomato-veg text-white px-1.5 py-0.5 rounded text-xs">4.8 ★</span>
+                            <span>1,420+ Dine-In Reviews</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100 text-jomato-charcoal text-xs sm:text-sm font-semibold">
+                            <i data-lucide="flame" class="w-4 h-4 text-jomato-orange"></i>
+                            <span>Live Tandoor & Kitchen</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100 text-jomato-charcoal text-xs sm:text-sm font-semibold">
+                            <i data-lucide="clock" class="w-4 h-4 text-jomato-orange"></i>
+                            <span>Open Till 11:30 PM</span>
+                        </div>
+                    </div>
+
+                    <!-- Dual CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                        <a href="#reserve-section" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-jomato-orange hover:bg-jomato-orangeHover text-white font-display font-bold text-base shadow-orange-glow transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                            <span>Reserve a Table</span>
+                        </a>
+                        <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-gray-50 text-jomato-charcoal border-2 border-gray-200 hover:border-jomato-orange font-display font-bold text-base transition-all flex items-center justify-center gap-2">
+                            <span>Explore Dining Menu</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-jomato-orange"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: High-Resolution Appetizing Food Collage Card -->
+                <div class="lg:col-span-6">
+                    <div class="relative mx-auto max-w-lg lg:max-w-none">
+                        <!-- Main Hero Dish Image -->
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gray-100 aspect-[4/3]">
+                            <img 
+                                src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1200&q=85" 
+                                alt="Jomato Signature Indian Feast Platter with Biryani, Kebabs and Naan" 
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                onerror="this.src='https://placehold.co/800x600/FC8019/FFFFFF?text=Jomato+Signature+Feast'"
+                            >
+                        </div>
+
+                        <!-- Floating Chef's Table Highlight Card (Bottom Left) -->
+                        <div class="hidden sm:flex items-center gap-3.5 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 absolute -bottom-6 -left-6 max-w-xs">
+                            <img 
+                                src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=200&q=80" 
+                                alt="Butter Chicken & Garlic Naan" 
+                                class="w-14 h-14 rounded-xl object-cover shrink-0"
+                                onerror="this.src='https://placehold.co/100x100/FC8019/FFFFFF?text=Dish'"
+                            >
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-jomato-orange bg-jomato-orangeLight px-2 py-0.5 rounded">Most Ordered Today</span>
+                                <h4 class="font-display font-bold text-sm text-jomato-charcoal mt-1">Smoked Butter Chicken Platter</h4>
+                                <p class="text-xs text-jomato-slate">Served with Butter Garlic Naan</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Table Availability Pill (Top Right) -->
+                        <div class="bg-jomato-charcoal text-white px-4 py-3 rounded-2xl shadow-xl absolute -top-4 -right-2 sm:-right-4 flex items-center gap-2.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <div class="text-xs">
+                                <span class="font-bold block">Tables Available Tonight</span>
+                                <span class="text-gray-300 text-[11px]">Indoor AC & Rooftop Deck</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Dining Highlights Strip -->
+            <div class="mt-16 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="flex items-start gap-4 p-5 rounded-2xl bg-jomato-bg border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div class="w-12 h-12 rounded-2xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center shrink-0">
+                        <i data-lucide="flame" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-base text-jomato-charcoal">Signature Wood-Fired Flavors</h3>
+                        <p class="text-xs sm:text-sm text-jomato-slate mt-1 leading-relaxed">
+                            Slow-charred in clay tandoors using natural fruitwood charcoal for authentic smoky depth.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-5 rounded-2xl bg-jomato-bg border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div class="w-12 h-12 rounded-2xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center shrink-0">
+                        <i data-lucide="armchair" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-base text-jomato-charcoal">Cozy Family & Rooftop Seating</h3>
+                        <p class="text-xs sm:text-sm text-jomato-slate mt-1 leading-relaxed">
+                            Choose between plush air-conditioned family booths or our breezy starlit garden terrace.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-5 rounded-2xl bg-jomato-bg border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div class="w-12 h-12 rounded-2xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center shrink-0">
+                        <i data-lucide="sprout" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-base text-jomato-charcoal">Fresh Farm-to-Table Spices</h3>
+                        <p class="text-xs sm:text-sm text-jomato-slate mt-1 leading-relaxed">
+                            Single-origin spices roasted and stone-ground every morning by our master culinary team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. INTERACTIVE DINE-IN FOOD MENU SECTION -->
+    <section id="menu" class="py-16 sm:py-24 bg-jomato-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-jomato-orange">Curated Dine-In Menu</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-jomato-charcoal mt-1">
+                        What’s Cooking in Our Kitchen?
+                    </h2>
+                    <p class="text-sm sm:text-base text-jomato-slate mt-2 max-w-2xl">
+                        Browse our freshly prepared dine-in specialties. Shortlist your favorite dishes to save time when you arrive at your table!
+                    </p>
+                </div>
+
+                <!-- Pure Veg Toggle + Live Search Bar -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <!-- Pure Veg Filter Toggle -->
+                    <button id="veg-toggle-btn" onclick="togglePureVeg()" class="inline-flex items-center justify-between sm:justify-start gap-3 px-4 py-2.5 rounded-xl bg-white border border-gray-200 shadow-sm hover:border-jomato-veg transition-all">
+                        <span class="flex items-center gap-2 text-sm font-bold text-jomato-charcoal">
+                            <!-- Veg Icon -->
+                            <span class="w-4 h-4 border-2 border-jomato-veg flex items-center justify-center rounded-[3px]">
+                                <span class="w-2 h-2 rounded-full bg-jomato-veg"></span>
+                            </span>
+                            <span>Pure Veg Only</span>
+                        </span>
+                        <span id="veg-switch-pill" class="w-9 h-5 bg-gray-200 rounded-full relative transition-colors duration-200">
+                            <span id="veg-switch-knob" class="w-3.5 h-3.5 bg-white rounded-full absolute top-0.5 left-0.5 shadow transition-transform duration-200"></span>
+                        </span>
+                    </button>
+
+                    <!-- Live Dish Search Input -->
+                    <div class="relative">
+                        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                        <input 
+                            type="text" 
+                            id="menu-search" 
+                            oninput="handleSearch(this.value)" 
+                            placeholder="Search paneer, biryani, kebab..." 
+                            class="w-full sm:w-64 pl-10 pr-4 py-2.5 rounded-xl bg-white border border-gray-200 text-sm text-jomato-charcoal placeholder-gray-400 focus:outline-none focus:border-jomato-orange shadow-sm"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Swiggy-Style Category Filter Pills -->
+            <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-4 mb-8" id="category-tabs">
+                <button onclick="selectCategory('all')" data-cat="all" class="cat-btn active shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-jomato-charcoal text-white shadow-sm transition-all">
+                    All Dishes (12)
+                </button>
+                <button onclick="selectCategory('Starters')" data-cat="Starters" class="cat-btn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-white text-jomato-charcoal border border-gray-200 hover:border-jomato-orange transition-all">
+                    Starters & Chaats
+                </button>
+                <button onclick="selectCategory('Tandoor & Grill')" data-cat="Tandoor & Grill" class="cat-btn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-white text-jomato-charcoal border border-gray-200 hover:border-jomato-orange transition-all">
+                    Tandoor & Grill
+                </button>
+                <button onclick="selectCategory('Main Course')" data-cat="Main Course" class="cat-btn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-white text-jomato-charcoal border border-gray-200 hover:border-jomato-orange transition-all">
+                    Main Course
+                </button>
+                <button onclick="selectCategory('Biryani & Rice')" data-cat="Biryani & Rice" class="cat-btn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-white text-jomato-charcoal border border-gray-200 hover:border-jomato-orange transition-all">
+                    Biryani & Rice
+                </button>
+                <button onclick="selectCategory('Desserts & Beverages')" data-cat="Desserts & Beverages" class="cat-btn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-white text-jomato-charcoal border border-gray-200 hover:border-jomato-orange transition-all">
+                    Desserts & Beverages
+                </button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Empty State when Search/Filter finds nothing -->
+            <div id="menu-empty" class="hidden text-center py-16 bg-white rounded-3xl border border-gray-100 shadow-card">
+                <div class="w-16 h-16 rounded-2xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="search-x" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-jomato-charcoal">No matching dishes found</h3>
+                <p class="text-sm text-jomato-slate mt-1 mb-5">Try clearing your search filter or switching off Pure Veg mode.</p>
+                <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-jomato-orange text-white font-bold text-sm hover:bg-jomato-orangeHover transition-colors">
+                    Reset All Filters
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SPECIAL DINING OFFERS & CHEF COMBOS SECTION -->
+    <section id="offers" class="py-16 sm:py-24 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-jomato-orange">Exclusive Dine-In Perks</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-jomato-charcoal mt-1">
+                        Deals & Table Offers for You
+                    </h2>
+                    <p class="text-sm sm:text-base text-jomato-slate mt-2">
+                        Show these codes to your server when seated at Jomato to unlock instant dining privileges.
+                    </p>
+                </div>
+                <a href="#reserve-section" class="inline-flex items-center gap-1.5 text-sm font-bold text-jomato-orange hover:underline">
+                    <span>Book a table to redeem</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Swiggy-Inspired Coupon & Offer Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Offer 1 -->
+                <div class="relative rounded-3xl p-6 bg-gradient-to-br from-[#FFF4EB] via-white to-[#FFE6D1] border border-orange-200 shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-jomato-orange text-white text-xs font-extrabold tracking-wide">
+                                <i data-lucide="percent" class="w-3.5 h-3.5"></i>
+                                <span>WEEKDAY FEAST</span>
+                            </span>
+                            <span class="text-xs font-bold text-jomato-slate">Mon – Fri • 12 PM – 4 PM</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl text-jomato-charcoal mb-2">
+                            FLAT 25% OFF on Weekday Lunch Buffets
+                        </h3>
+                        <p class="text-sm text-jomato-slate leading-relaxed mb-6">
+                            Enjoy unlimited starters, live chaat counters, 14 main course delicacies, and assorted desserts at an unbeatable afternoon price.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-dashed border-orange-300 flex items-center justify-between gap-3">
+                        <div class="px-3.5 py-2 rounded-xl bg-white border border-orange-200 font-mono font-bold text-sm text-jomato-charcoal tracking-wider">
+                            JOMATOLUNCH
+                        </div>
+                        <button onclick="copyOfferCode('JOMATOLUNCH')" class="px-4 py-2.5 rounded-xl bg-jomato-orange hover:bg-jomato-orangeHover text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 shrink-0">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Copy Code</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 2 -->
+                <div class="relative rounded-3xl p-6 bg-gradient-to-br from-[#F0FDF4] via-white to-[#DCFCE7] border border-emerald-200 shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-jomato-veg text-white text-xs font-extrabold tracking-wide">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                                <span>FAMILY & GROUP TREAT</span>
+                            </span>
+                            <span class="text-xs font-bold text-jomato-slate">Tables of 4+</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl text-jomato-charcoal mb-2">
+                            Complimentary Royal Dessert Platter
+                        </h3>
+                        <p class="text-sm text-jomato-slate leading-relaxed mb-6">
+                            Dining with friends or family? Receive our signature Shahi Tukda, Saffron Rasmalai & Warm Gulab Jamun platter on the house!
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-dashed border-emerald-300 flex items-center justify-between gap-3">
+                        <div class="px-3.5 py-2 rounded-xl bg-white border border-emerald-200 font-mono font-bold text-sm text-jomato-charcoal tracking-wider">
+                            SWEETTABLE
+                        </div>
+                        <button onclick="copyOfferCode('SWEETTABLE')" class="px-4 py-2.5 rounded-xl bg-jomato-veg hover:opacity-90 text-white font-bold text-xs uppercase tracking-wider transition-opacity flex items-center gap-1.5 shrink-0">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Copy Code</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 3 -->
+                <div class="relative rounded-3xl p-6 bg-gradient-to-br from-[#EEF2FF] via-white to-[#E0E7FF] border border-indigo-200 shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-extrabold tracking-wide">
+                                <i data-lucide="glass-water" class="w-3.5 h-3.5"></i>
+                                <span>HAPPY HOURS</span>
+                            </span>
+                            <span class="text-xs font-bold text-jomato-slate">Daily • 4 PM – 7 PM</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl text-jomato-charcoal mb-2">
+                            1+1 on Craft Mocktails & Coolers
+                        </h3>
+                        <p class="text-sm text-jomato-slate leading-relaxed mb-6">
+                            Unwind on our rooftop terrace with buy-one-get-one-free on Jamun Kala Khatta Fizz, Alphonso Basil Smash, and Roasted Jeera Mojitos.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-dashed border-indigo-300 flex items-center justify-between gap-3">
+                        <div class="px-3.5 py-2 rounded-xl bg-white border border-indigo-200 font-mono font-bold text-sm text-jomato-charcoal tracking-wider">
+                            SIPJOY1PLUS1
+                        </div>
+                        <button onclick="copyOfferCode('SIPJOY1PLUS1')" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 shrink-0">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Copy Code</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CUSTOMER REVIEWS & DINING STORIES SECTION -->
+    <section id="reviews" class="py-16 sm:py-24 bg-jomato-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Rating Summary Header Bar -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-gray-100 mb-12 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                    <div class="w-24 h-24 rounded-3xl bg-jomato-veg text-white flex flex-col items-center justify-center shrink-0 shadow-lg">
+                        <span class="font-display font-extrabold text-3xl leading-none">4.8</span>
+                        <span class="text-xs font-bold mt-1 tracking-wider">OUT OF 5 ★</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-jomato-orange">Verified Guest Love</span>
+                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-jomato-charcoal mt-1">
+                            Loved by 1,420+ Dine-In Guests
+                        </h2>
+                        <p class="text-sm text-jomato-slate mt-1">
+                            Rated #1 in Indiranagar for Charcoal Tandoor Platters, Rooftop Ambiance & Warm Hospitality.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Category Sub-Ratings -->
+                <div class="grid grid-cols-3 gap-4 sm:gap-8 w-full lg:w-auto border-t lg:border-t-0 pt-6 lg:pt-0 border-gray-100">
+                    <div class="text-center">
+                        <div class="font-display font-extrabold text-xl text-jomato-charcoal">4.9 ★</div>
+                        <div class="text-xs font-semibold text-jomato-slate mt-0.5">Food & Taste</div>
+                    </div>
+                    <div class="text-center border-x border-gray-100 px-4">
+                        <div class="font-display font-extrabold text-xl text-jomato-charcoal">4.8 ★</div>
+                        <div class="text-xs font-semibold text-jomato-slate mt-0.5">Ambiance</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-display font-extrabold text-xl text-jomato-charcoal">4.7 ★</div>
+                        <div class="text-xs font-semibold text-jomato-slate mt-0.5">Service</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Guest Review Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Review Card 1 -->
+                <div class="bg-white rounded-3xl p-7 shadow-card border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-jomato-veg text-white text-xs font-bold">
+                                <span>5.0</span>
+                                <span>★</span>
+                            </span>
+                            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                                ✓ Verified Dine-In
+                            </span>
+                        </div>
+                        <p class="text-sm sm:text-base text-jomato-charcoal leading-relaxed mb-6">
+                            "Booked a rooftop table for my parents' anniversary and Jomato exceeded every expectation. The Dal Makhani is slow-cooked to creamy perfection, and the Galouti Kebabs literally melt in your mouth!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-gray-100">
+                        <div class="w-11 h-11 rounded-full bg-jomato-orangeLight text-jomato-orange font-display font-extrabold flex items-center justify-center text-sm">
+                            AK
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold text-sm text-jomato-charcoal">Ananya Krishnan</h4>
+                            <p class="text-xs text-jomato-slate">Dined on Rooftop Deck • 3 days ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-white rounded-3xl p-7 shadow-card border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-jomato-veg text-white text-xs font-bold">
+                                <span>5.0</span>
+                                <span>★</span>
+                            </span>
+                            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                                ✓ Verified Dine-In
+                            </span>
+                        </div>
+                        <p class="text-sm sm:text-base text-jomato-charcoal leading-relaxed mb-6">
+                            "Hands down the best Hyderabadi Dum Biryani in town. When they crack open the dough seal right at your table, the aroma of saffron and roasted spices fills the whole booth. Super courteous staff too!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-gray-100">
+                        <div class="w-11 h-11 rounded-full bg-indigo-100 text-indigo-700 font-display font-extrabold flex items-center justify-center text-sm">
+                            RS
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold text-sm text-jomato-charcoal">Rohan Sharma</h4>
+                            <p class="text-xs text-jomato-slate">Family Dinner (6 Guests) • 1 week ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-white rounded-3xl p-7 shadow-card border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-jomato-veg text-white text-xs font-bold">
+                                <span>4.8</span>
+                                <span>★</span>
+                            </span>
+                            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                                ✓ Verified Dine-In
+                            </span>
+                        </div>
+                        <p class="text-sm sm:text-base text-jomato-charcoal leading-relaxed mb-6">
+                            "We used the JOMATOLUNCH code for our team lunch on Wednesday. Fantastic vegetarian spread—the Truffle Paneer Tikka and Jamun Kala Khatta mocktails are absolute must-tries!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-gray-100">
+                        <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 font-display font-extrabold flex items-center justify-center text-sm">
+                            PM
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold text-sm text-jomato-charcoal">Priya Menon</h4>
+                            <p class="text-xs text-jomato-slate">Weekday Team Lunch • 2 weeks ago</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. INTERACTIVE TABLE RESERVATION & CONTACT / LOCATION SECTION -->
+    <section id="reserve-section" class="py-16 sm:py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                
+                <!-- LEFT SIDE (7 Cols): Interactive 'Reserve Your Table' Form -->
+                <div class="lg:col-span-7 bg-jomato-bg rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-card">
+                    <div class="mb-8">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-jomato-orange">Instant Table Confirmation</span>
+                        <h2 class="font-display font-extrabold text-3xl text-jomato-charcoal mt-1">
+                            Reserve Your Table at Jomato
+                        </h2>
+                        <p class="text-sm text-jomato-slate mt-2">
+                            Skip the waiting queue. Select your preferred date, time slot, and seating zone—no advance payment required.
+                        </p>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <form id="reservation-form" onsubmit="handleBookingSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="guest-name" class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Guest Full Name *</label>
+                                <input type="text" id="guest-name" required placeholder="e.g., Aarav Patel" class="w-full px-4 py-3.5 rounded-xl bg-white border border-gray-200 text-sm text-jomato-charcoal focus:outline-none focus:border-jomato-orange">
+                            </div>
+                            <div>
+                                <label for="guest-phone" class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Mobile Number *</label>
+                                <input type="tel" id="guest-phone" required placeholder="+91 98765 43210" class="w-full px-4 py-3.5 rounded-xl bg-white border border-gray-200 text-sm text-jomato-charcoal focus:outline-none focus:border-jomato-orange">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="booking-date" class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Dining Date *</label>
+                                <input type="date" id="booking-date" required class="w-full px-4 py-3.5 rounded-xl bg-white border border-gray-200 text-sm text-jomato-charcoal focus:outline-none focus:border-jomato-orange">
+                            </div>
+                            <div>
+                                <label for="party-size" class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Number of Guests *</label>
+                                <select id="party-size" class="w-full px-4 py-3.5 rounded-xl bg-white border border-gray-200 text-sm text-jomato-charcoal font-medium focus:outline-none focus:border-jomato-orange">
+                                    <option value="2 Guests">2 Guests (Couple / Duo)</option>
+                                    <option value="4 Guests" selected>4 Guests (Family Table)</option>
+                                    <option value="6 Guests">6 Guests (Group Booth)</option>
+                                    <option value="8+ Guests">8+ Guests (Large Celebration)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Time Slot Pills -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Select Time Slot *</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="time-slot-group">
+                                <button type="button" onclick="selectTimeSlot(this, '1:00 PM')" class="time-pill py-2.5 px-3 rounded-xl text-xs font-bold bg-white border border-gray-200 text-jomato-charcoal hover:border-jomato-orange transition-all">
+                                    1:00 PM (Lunch)
+                                </button>
+                                <button type="button" onclick="selectTimeSlot(this, '7:30 PM')" class="time-pill active py-2.5 px-3 rounded-xl text-xs font-bold bg-jomato-orange text-white border border-jomato-orange shadow-sm transition-all">
+                                    7:30 PM (Dinner)
+                                </button>
+                                <button type="button" onclick="selectTimeSlot(this, '8:30 PM')" class="time-pill py-2.5 px-3 rounded-xl text-xs font-bold bg-white border border-gray-200 text-jomato-charcoal hover:border-jomato-orange transition-all">
+                                    8:30 PM (Prime)
+                                </button>
+                                <button type="button" onclick="selectTimeSlot(this, '9:30 PM')" class="time-pill py-2.5 px-3 rounded-xl text-xs font-bold bg-white border border-gray-200 text-jomato-charcoal hover:border-jomato-orange transition-all">
+                                    9:30 PM (Late)
+                                </button>
+                            </div>
+                            <input type="hidden" id="selected-time" value="7:30 PM">
+                        </div>
+
+                        <!-- Seating Preference Radio Cards -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Seating Preference</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="seating" value="Indoor AC Dining" checked class="peer sr-only">
+                                    <div class="p-3.5 rounded-xl bg-white border-2 border-gray-200 peer-checked:border-jomato-orange peer-checked:bg-jomato-orangeLight/50 transition-all text-center">
+                                        <span class="text-sm font-bold text-jomato-charcoal block">Indoor AC</span>
+                                        <span class="text-[11px] text-jomato-slate">Plush Lounge</span>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="seating" value="Rooftop Garden" class="peer sr-only">
+                                    <div class="p-3.5 rounded-xl bg-white border-2 border-gray-200 peer-checked:border-jomato-orange peer-checked:bg-jomato-orangeLight/50 transition-all text-center">
+                                        <span class="text-sm font-bold text-jomato-charcoal block">Rooftop Garden</span>
+                                        <span class="text-[11px] text-jomato-slate">Open-Air Breeze</span>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="seating" value="Private Family Booth" class="peer sr-only">
+                                    <div class="p-3.5 rounded-xl bg-white border-2 border-gray-200 peer-checked:border-jomato-orange peer-checked:bg-jomato-orangeLight/50 transition-all text-center">
+                                        <span class="text-sm font-bold text-jomato-charcoal block">Private Booth</span>
+                                        <span class="text-[11px] text-jomato-slate">Quiet & Cozy</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Optional Special Request -->
+                        <div>
+                            <label for="special-notes" class="block text-xs font-bold uppercase tracking-wider text-jomato-charcoal mb-2">Special Occasion / Dietary Note (Optional)</label>
+                            <input type="text" id="special-notes" placeholder="Birthday celebration, high chair needed, Jain food preference..." class="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm text-jomato-charcoal focus:outline-none focus:border-jomato-orange">
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-2xl bg-jomato-orange hover:bg-jomato-orangeHover text-white font-display font-bold text-base shadow-orange-glow transition-all active:scale-[0.99] flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            <span>Confirm Table Reservation</span>
+                        </button>
+                    </form>
+
+                    <!-- Instant Booking Confirmation Card (Hidden until submitted) -->
+                    <div id="booking-confirmation" class="hidden bg-white rounded-2xl p-6 sm:p-8 border-2 border-jomato-veg shadow-lg text-center space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-emerald-100 text-jomato-veg flex items-center justify-center mx-auto">
+                            <i data-lucide="check" class="w-8 h-8 stroke-[3]"></i>
+                        </div>
+                        <div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-50 text-jomato-veg text-xs font-extrabold uppercase tracking-wider">Reservation Confirmed</span>
+                            <h3 class="font-display font-extrabold text-2xl text-jomato-charcoal mt-2" id="conf-heading">
+                                Your Table is Reserved!
+                            </h3>
+                            <p class="text-sm text-jomato-slate mt-1">
+                                Booking Reference: <strong class="text-jomato-charcoal font-mono" id="conf-code">#JMT-8492</strong>
+                            </p>
+                        </div>
+
+                        <div class="bg-jomato-bg rounded-xl p-4 text-left text-sm space-y-2 border border-gray-100">
+                            <div class="flex justify-between">
+                                <span class="text-jomato-slate">Guest Name:</span>
+                                <span class="font-bold text-jomato-charcoal" id="conf-name">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-jomato-slate">Date & Time:</span>
+                                <span class="font-bold text-jomato-charcoal" id="conf-datetime">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-jomato-slate">Party & Zone:</span>
+                                <span class="font-bold text-jomato-charcoal" id="conf-seating">-</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-jomato-slate">
+                            We hold reserved tables for up to 15 minutes past the booking time. Valet parking is complimentary at the main entrance.
+                        </p>
+
+                        <button onclick="resetBookingForm()" class="px-6 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-jomato-charcoal font-bold text-xs transition-colors">
+                            Make Another Reservation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE (5 Cols): Location, Hours, Contact & Interactive Map Card -->
+                <div id="location" class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-jomato-orange">Visit Us</span>
+                        <h2 class="font-display font-extrabold text-3xl text-jomato-charcoal mt-1">
+                            Location & Dining Hours
+                        </h2>
+                        <p class="text-sm text-jomato-slate mt-2">
+                            Located in the heart of 100 Feet Road, Indiranagar with complimentary valet parking for all dine-in guests.
+                        </p>
+                    </div>
+
+                    <!-- Info Cards -->
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-5 rounded-2xl bg-jomato-bg border border-gray-100">
+                            <div class="w-11 h-11 rounded-xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-base text-jomato-charcoal">Restaurant Address</h4>
+                                <p class="text-sm text-jomato-slate mt-1 leading-relaxed">
+                                    #742, 2nd Floor & Rooftop Terrace, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-5 rounded-2xl bg-jomato-bg border border-gray-100">
+                            <div class="w-11 h-11 rounded-xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div class="w-full">
+                                <h4 class="font-display font-bold text-base text-jomato-charcoal">Opening Hours</h4>
+                                <div class="text-sm text-jomato-slate mt-1.5 space-y-1">
+                                    <div class="flex justify-between">
+                                        <span>Mon – Thu (Lunch & Dinner):</span>
+                                        <span class="font-semibold text-jomato-charcoal">12:00 PM – 11:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Fri – Sun (Extended Hours):</span>
+                                        <span class="font-semibold text-jomato-charcoal">12:00 PM – 11:30 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="tel:+918041239876" class="flex items-center gap-3 p-4 rounded-2xl bg-jomato-bg border border-gray-100 hover:border-jomato-orange transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-white text-jomato-orange flex items-center justify-center shadow-sm shrink-0">
+                                    <i data-lucide="phone-call" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase text-jomato-slate block">Table Desk</span>
+                                    <span class="text-sm font-bold text-jomato-charcoal">+91 80 4123 9876</span>
+                                </div>
+                            </a>
+
+                            <a href="mailto:dine@jomatokitchen.in" class="flex items-center gap-3 p-4 rounded-2xl bg-jomato-bg border border-gray-100 hover:border-jomato-orange transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-white text-jomato-orange flex items-center justify-center shadow-sm shrink-0">
+                                    <i data-lucide="mail" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase text-jomato-slate block">Events & Queries</span>
+                                    <span class="text-sm font-bold text-jomato-charcoal">dine@jomatokitchen.in</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Visual Map Card -->
+                    <div class="relative rounded-3xl overflow-hidden border border-gray-200 shadow-card bg-[#EEF2F6] h-60 group">
+                        <!-- Clean Vector Street Map Illustration -->
+                        <svg class="w-full h-full object-cover" viewBox="0 0 500 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="500" height="260" fill="#F1F5F9"/>
+                            <!-- Green Park Area -->
+                            <rect x="25" y="25" width="130" height="85" rx="16" fill="#DCFCE7"/>
+                            <text x="52" y="72" fill="#15803D" font-size="11" font-weight="700" font-family="Inter">Defence Colony Park</text>
+                            <!-- Main Roads -->
+                            <path d="M0 155 L500 135" stroke="#FFFFFF" stroke-width="22"/>
+                            <path d="M0 155 L500 135" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6"/>
+                            <path d="M270 0 L240 260" stroke="#FFFFFF" stroke-width="26"/>
+                            <path d="M270 0 L240 260" stroke="#FDBA74" stroke-width="2"/>
+                            <!-- Road Labels -->
+                            <text x="315" y="149" fill="#475569" font-size="11" font-weight="700" font-family="Inter">100 FEET ROAD</text>
+                            <text x="262" y="45" fill="#475569" font-size="10" font-weight="600" font-family="Inter" transform="rotate(96 262 45)">12TH MAIN</text>
+                        </svg>
+
+                        <!-- Map Pin Marker & Get Directions Action -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                            <div class="relative flex flex-col items-center -mt-4">
+                                <span class="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-jomato-orange opacity-40"></span>
+                                <div class="relative w-11 h-11 rounded-full bg-jomato-orange text-white flex items-center justify-center shadow-lg border-2 border-white">
+                                    <i data-lucide="utensils" class="w-5 h-5"></i>
+                                </div>
+                                <div class="mt-2 px-3.5 py-1.5 rounded-xl bg-jomato-charcoal text-white text-xs font-bold shadow-md">
+                                    Jomato Kitchen & Rooftop
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.google.com/?q=100+Feet+Road+Indiranagar+Bengaluru" target="_blank" rel="noopener noreferrer" class="absolute bottom-3 right-3 px-4 py-2 rounded-xl bg-white hover:bg-jomato-orange text-jomato-charcoal hover:text-white font-bold text-xs shadow-md transition-colors flex items-center gap-1.5">
+                            <span>Open in Google Maps</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CLEAN RESTAURANT FOOTER -->
+    <footer class="bg-jomato-charcoal text-white pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+                <!-- Brand -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-jomato-orange flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C9.5 5.2 7.5 7.8 7.5 11.2C7.5 13.9 9.5 16 12 16C14.5 16 16.5 13.9 16.5 11.2C16.5 9.6 15.8 8.1 14.8 6.8C14.5 8.1 13.6 8.9 12.6 8.9C11.4 8.9 10.6 7.9 10.8 6.6C11 5.1 11.5 3.6 12 2Z" fill="currentColor"/>
+                                <path d="M9 15.5V21C9 21.5523 9.44772 22 10 22H14C14.5523 22 15 21.5523 15 21V15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="font-display font-extrabold text-2xl tracking-tight text-white">
+                            jomato<span class="text-jomato-orange">.</span>
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-md leading-relaxed">
+                        A celebration of wood-fired Indian heritage and contemporary hospitality. Designed exclusively for memorable dine-in experiences, family feasts, and rooftop evenings.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white mb-4">Explore</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-jomato-orange transition-colors">Home</a></li>
+                        <li><a href="#menu" class="hover:text-jomato-orange transition-colors">Dine-In Menu</a></li>
+                        <li><a href="#offers" class="hover:text-jomato-orange transition-colors">Offers & Combos</a></li>
+                        <li><a href="#reviews" class="hover:text-jomato-orange transition-colors">Guest Reviews</a></li>
+                        <li><a href="#reserve-section" class="hover:text-jomato-orange transition-colors">Book a Table</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hospitality Info -->
+                <div>
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white mb-4">Hospitality</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li>Complimentary Valet Parking</li>
+                        <li>Wheelchair Accessible</li>
+                        <li>Private Party & Corporate Dining</li>
+                        <li>100% Halal & Jain Options Available</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+                <p>© 2026 Jomato Kitchen & Dining Hospitality Pvt. Ltd. All rights reserved.</p>
+                <p>Dine-In Restaurant Experience • Indiranagar, Bengaluru</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DISH DETAILS MODAL (Ingredients, Spice Level & Allergens) -->
+    <div id="dish-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div onclick="closeDishModal()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-gray-100">
+            <button onclick="closeDishModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-jomato-charcoal flex items-center justify-center shadow-md">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="h-56 bg-gray-100 overflow-hidden">
+                <img id="modal-dish-img" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 sm:p-7">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span id="modal-dish-diet"></span>
+                        <span id="modal-dish-badge" class="text-xs font-extrabold uppercase tracking-wider text-jomato-orange"></span>
+                    </div>
+                    <span id="modal-dish-rating" class="px-2 py-0.5 rounded bg-jomato-veg text-white text-xs font-bold"></span>
+                </div>
+                <h3 id="modal-dish-name" class="font-display font-extrabold text-2xl text-jomato-charcoal"></h3>
+                <p id="modal-dish-price" class="font-display font-bold text-lg text-jomato-charcoal mt-1"></p>
+                <p id="modal-dish-desc" class="text-sm text-jomato-slate leading-relaxed mt-3"></p>
+
+                <div class="mt-5 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-jomato-bg">
+                        <span class="text-jomato-slate block">Spice Profile</span>
+                        <span id="modal-dish-spice" class="font-bold text-jomato-charcoal mt-0.5 block"></span>
+                    </div>
+                    <div class="p-3 rounded-xl bg-jomato-bg">
+                        <span class="text-jomato-slate block">Allergen Info</span>
+                        <span id="modal-dish-allergens" class="font-bold text-jomato-charcoal mt-0.5 block"></span>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center gap-3">
+                    <button id="modal-add-btn" class="flex-1 py-3.5 rounded-xl bg-jomato-orange hover:bg-jomato-orangeHover text-white font-display font-bold text-sm shadow-orange-glow transition-all">
+                        + Add to Table Shortlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLE DISH SHORTLIST SLIDE-OVER DRAWER (Pre-Dining Wishlist - NOT Delivery Cart) -->
+    <div id="shortlist-drawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleShortlist()" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between p-6">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+                    <div>
+                        <h3 class="font-display font-extrabold text-xl text-jomato-charcoal">Your Table Dish Shortlist</h3>
+                        <p class="text-xs text-jomato-slate mt-0.5">Save dishes you’d love to try when seated at Jomato</p>
+                    </div>
+                    <button onclick="toggleShortlist()" class="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-jomato-charcoal">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div id="shortlist-items" class="mt-5 space-y-3 max-h-[58vh] overflow-y-auto pr-1">
+                    <!-- Shortlisted dishes populated via JS -->
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-100 space-y-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="font-semibold text-jomato-slate">Estimated Table Bill</span>
+                    <span id="shortlist-total" class="font-display font-extrabold text-xl text-jomato-charcoal">₹0</span>
+                </div>
+                <a href="#reserve-section" onclick="toggleShortlist()" class="w-full py-3.5 rounded-xl bg-jomato-orange hover:bg-jomato-orangeHover text-white font-display font-bold text-sm shadow-orange-glow transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                    <span>Book a Table with This Shortlist</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set default reservation date to today
+        const todayStr = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('booking-date');
+        if (dateInput) {
+            dateInput.value = todayStr;
+            dateInput.min = todayStr;
+        }
+
+        // Authentic Dine-In Restaurant Menu Data
+        const menuData = [
+            {
+                id: 1,
+                name: "Truffle & Charcoal Paneer Tikka",
+                category: "Tandoor & Grill",
+                price: 395,
+                isVeg: true,
+                rating: "4.9",
+                reviews: 310,
+                badge: "Chef's Special",
+                spice: "Medium • Smoky",
+                allergens: "Dairy, Mustard",
+                img: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=800&q=80",
+                desc: "House-made malai cottage cheese marinated in hung curd, Kashmiri chilli, and black truffle oil, blistered in our clay tandoor with charred bell peppers."
+            },
+            {
+                id: 2,
+                name: "Old Delhi Murgh Makhani",
+                category: "Main Course",
+                price: 485,
+                isVeg: false,
+                rating: "4.9",
+                reviews: 540,
+                badge: "Bestseller",
+                spice: "Mild & Creamy",
+                allergens: "Dairy, Cashews",
+                img: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80",
+                desc: "Tandoor-roasted chicken tikka simmered overnight in a velvety heirloom tomato, fenugreek, and white butter gravy. Best paired with garlic naan."
+            },
+            {
+                id: 3,
+                name: "Royal Hyderabadi Subz Dum Biryani",
+                category: "Biryani & Rice",
+                price: 425,
+                isVeg: true,
+                rating: "4.7",
+                reviews: 215,
+                badge: "Bestseller",
+                spice: "Medium • Aromatic",
+                allergens: "Dairy, Nuts",
+                img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80",
+                desc: "Aged basmati rice layered with baby potatoes, jackfruit, saffron milk, and caramelized onions, sealed with dough and slow-cooked on dum. Served with mirchi ka salan."
+            },
+            {
+                id: 4,
+                name: "Awadhi Mutton Galouti Kebab",
+                category: "Starters",
+                price: 545,
+                isVeg: false,
+                rating: "4.9",
+                reviews: 280,
+                badge: "Chef's Special",
+                spice: "Medium • Spiced",
+                allergens: "Gluten (Sheermal), Dairy",
+                img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80",
+                desc: "Melt-in-the-mouth minced lamb medallions infused with 32 roasted spices and rose water, pan-seared in desi ghee over mini saffron sheermal."
+            },
+            {
+                id: 5,
+                name: "24-Hour Smoked Dal Jomato",
+                category: "Main Course",
+                price: 365,
+                isVeg: true,
+                rating: "4.8",
+                reviews: 410,
+                badge: "Bestseller",
+                spice: "Mild & Rich",
+                allergens: "Dairy",
+                img: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80",
+                desc: "Whole black urad lentils slow-simmered for 24 hours over glowing charcoal embers, finished with ginger juliennes, churned white butter, and fresh cream."
+            },
+            {
+                id: 6,
+                name: "Crispy Lotus Stem & Honey Chilli",
+                category: "Starters",
+                price: 345,
+                isVeg: true,
+                rating: "4.6",
+                reviews: 190,
+                badge: "Crispy Favorite",
+                spice: "Sweet & Spicy",
+                allergens: "Sesame, Soy",
+                img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80",
+                desc: "Wafer-thin lotus root crisps tossed in wildflower honey, toasted white sesame, spring scallions, and crushed Bhavnagri chillies."
+            },
+            {
+                id: 7,
+                name: "Malabar Coastal Prawn Roast",
+                category: "Tandoor & Grill",
+                price: 575,
+                isVeg: false,
+                rating: "4.8",
+                reviews: 175,
+                badge: "Coastal Pick",
+                spice: "Fiery & Tangy",
+                allergens: "Shellfish",
+                img: "https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=800&q=80",
+                desc: "Jumbo tiger prawns pan-roasted with Tellicherry black pepper, crispy curry leaves, shallots, and kokum reduction."
+            },
+            {
+                id: 8,
+                name: "Nizami Gosht Dum Biryani",
+                category: "Biryani & Rice",
+                price: 565,
+                isVeg: false,
+                rating: "4.9",
+                reviews: 490,
+                badge: "Bestseller",
+                spice: "Medium-Spicy",
+                allergens: "Dairy",
+                img: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=800&q=80",
+                desc: "Tender bone-in goat morsels marinated in spiced yogurt and mint, dum-cooked with long-grain Kashmiri saffron basmati and served with burani raita."
+            },
+            {
+                id: 9,
+                name: "Dahi Ke Kebab with Tamarind Glaze",
+                category: "Starters",
+                price: 335,
+                isVeg: true,
+                rating: "4.7",
+                reviews: 165,
+                badge: "Must Try",
+                spice: "Mild & Tangy",
+                allergens: "Dairy, Gluten",
+                img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80",
+                desc: "Crisp golden patties of spiced hung yogurt, roasted gram flour, and green cardamom, served with aged date-tamarind chutney."
+            },
+            {
+                id: 10,
+                name: "Saffron Pistachio Rasmalai Tres Leches",
+                category: "Desserts & Beverages",
+                price: 295,
+                isVeg: true,
+                rating: "4.9",
+                reviews: 320,
+                badge: "Chef's Special",
+                spice: "Sweet • Floral",
+                allergens: "Dairy, Pistachio, Gluten",
+                img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80",
+                desc: "Soft cardamom sponge soaked in three saffron-infused milks, topped with whipped mascarpone, Iranian pistachios, and dried rose petals."
+            },
+            {
+                id: 11,
+                name: "Jamun Kala Khatta Craft Fizz",
+                category: "Desserts & Beverages",
+                price: 215,
+                isVeg: true,
+                rating: "4.8",
+                reviews: 245,
+                badge: "House Cooler",
+                spice: "Tangy & Refreshing",
+                allergens: "None",
+                img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+                desc: "Fresh Java plum pulp shaken with roasted cumin, Himalayan black salt, fresh lime juice, and chilled sparkling soda."
+            },
+            {
+                id: 12,
+                name: "Shahi Tukda & Rabri Parfait",
+                category: "Desserts & Beverages",
+                price: 275,
+                isVeg: true,
+                rating: "4.8",
+                reviews: 185,
+                badge: "Classic Finale",
+                spice: "Rich & Sweet",
+                allergens: "Dairy, Nuts, Gluten",
+                img: "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80",
+                desc: "Ghee-toasted brioche layered with reduced cardamom rabri, silver varq, and toasted almond slivers."
+            }
+        ];
+
+        // State Variables
+        let activeCategory = 'all';
+        let pureVegOnly = false;
+        let searchQuery = '';
+        let tableShortlist = [];
+
+        // Helper: Render Authentic Indian Veg / Non-Veg Square Symbol
+        function getDietBadgeHTML(isVeg) {
+            if (isVeg) {
+                return `
+                    <span class="inline-flex items-center justify-center w-4 h-4 border-2 border-jomato-veg rounded-[3px] bg-white shrink-0" title="Vegetarian">
+                        <span class="w-2 h-2 rounded-full bg-jomato-veg"></span>
+                    </span>
+                `;
+            }
+            return `
+                <span class="inline-flex items-center justify-center w-4 h-4 border-2 border-jomato-nonveg rounded-[3px] bg-white shrink-0" title="Non-Vegetarian">
+                    <span class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[7px] border-b-jomato-nonveg"></span>
+                </span>
+            `;
+        }
+
+        // Render Menu Cards
+        function renderMenu() {
+            const grid = document.getElementById('menu-grid');
+            const emptyState = document.getElementById('menu-empty');
+
+            const filtered = menuData.filter(item => {
+                const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+                const matchesVeg = !pureVegOnly || item.isVeg;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || 
+                                      item.desc.toLowerCase().includes(searchQuery) ||
+                                      item.category.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesVeg && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => `
+                <article class="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover border border-gray-100 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Food Image Header -->
+                        <div class="relative h-52 bg-gray-100 overflow-hidden cursor-pointer" onclick="openDishModal(${item.id})">
+                            <img 
+                                src="${item.img}" 
+                                alt="${item.name}" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                onerror="this.src='https://placehold.co/600x400/FC8019/FFFFFF?text=${encodeURIComponent(item.name)}'"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"></div>
+                            
+                            <!-- Top Left Chef/Bestseller Badge -->
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-lg bg-white/95 backdrop-blur-sm text-jomato-orange font-extrabold text-[11px] uppercase tracking-wider shadow-sm">
+                                ${item.badge}
+                            </span>
+
+                            <!-- Bottom Left Rating Pill (Swiggy Style) -->
+                            <div class="absolute bottom-3 left-3.5 flex items-center gap-1.5">
+                                <span class="px-2 py-0.5 rounded-md bg-jomato-veg text-white text-xs font-bold flex items-center gap-1 shadow">
+                                    <span>${item.rating}</span>
+                                    <span>★</span>
+                                </span>
+                                <span class="text-white text-xs font-semibold drop-shadow">(${item.reviews})</span>
+                            </div>
+
+                            <!-- Quick Inspect Button -->
+                            <button onclick="event.stopPropagation(); openDishModal(${item.id})" class="absolute bottom-3 right-3.5 px-2.5 py-1 rounded-lg bg-white/90 hover:bg-white text-jomato-charcoal text-[11px] font-bold shadow transition-colors">
+                                Details
+                            </button>
+                        </div>
+
+                        <!-- Dish Content -->
+                        <div class="p-5">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    ${getDietBadgeHTML(item.isVeg)}
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-jomato-slate">${item.category}</span>
+                                </div>
+                                <span class="font-display font-extrabold text-lg text-jomato-charcoal">₹${item.price}</span>
+                            </div>
+
+                            <h3 onclick="openDishModal(${item.id})" class="font-display font-bold text-lg text-jomato-charcoal group-hover:text-jomato-orange transition-colors cursor-pointer">
+                                ${item.name}
+                            </h3>
+
+                            <p class="text-xs sm:text-sm text-jomato-slate leading-relaxed mt-2 line-clamp-2">
+                                ${item.desc}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card Action Footer -->
+                    <div class="px-5 pb-5 pt-1 flex items-center justify-between gap-3">
+                        <span class="text-[11px] font-semibold text-jomato-slate bg-gray-100 px-2.5 py-1 rounded-lg">
+                            ${item.spice}
+                        </span>
+                        <button onclick="addToShortlist(${item.id})" class="px-4 py-2 rounded-xl bg-white hover:bg-jomato-orange text-jomato-orange hover:text-white border-2 border-jomato-orange font-display font-bold text-xs uppercase tracking-wider transition-all active:scale-95 shadow-sm">
+                            + Shortlist
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Category Selection
+        function selectCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "cat-btn active shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-jomato-charcoal text-white shadow-sm transition-all";
+                } else {
+                    btn.className = "cat-btn shrink-0 px-5 py-2.5 rounded-full text-sm font-bold bg-white text-jomato-charcoal border border-gray-200 hover:border-jomato-orange transition-all";
+                }
+            });
+            renderMenu();
+        }
+
+        // Pure Veg Toggle
+        function togglePureVeg() {
+            pureVegOnly = !pureVegOnly;
+            const pill = document.getElementById('veg-switch-pill');
+            const knob = document.getElementById('veg-switch-knob');
+            const btn = document.getElementById('veg-toggle-btn');
+
+            if (pureVegOnly) {
+                pill.classList.remove('bg-gray-200');
+                pill.classList.add('bg-jomato-veg');
+                knob.classList.add('translate-x-4');
+                btn.classList.add('border-jomato-veg', 'bg-emerald-50/40');
+            } else {
+                pill.classList.add('bg-gray-200');
+                pill.classList.remove('bg-jomato-veg');
+                knob.classList.remove('translate-x-4');
+                btn.classList.remove('border-jomato-veg', 'bg-emerald-50/40');
+            }
+            renderMenu();
+        }
+
+        // Live Search Handler
+        function handleSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            renderMenu();
+        }
+
+        function resetFilters() {
+            activeCategory = 'all';
+            pureVegOnly = false;
+            searchQuery = '';
+            document.getElementById('menu-search').value = '';
+            const pill = document.getElementById('veg-switch-pill');
+            const knob = document.getElementById('veg-switch-knob');
+            const btn = document.getElementById('veg-toggle-btn');
+            pill.classList.add('bg-gray-200');
+            pill.classList.remove('bg-jomato-veg');
+            knob.classList.remove('translate-x-4');
+            btn.classList.remove('border-jomato-veg', 'bg-emerald-50/40');
+            selectCategory('all');
+        }
+
+        // Dish Details Modal
+        function openDishModal(id) {
+            const dish = menuData.find(d => d.id === id);
+            if (!dish) return;
+
+            document.getElementById('modal-dish-img').src = dish.img;
+            document.getElementById('modal-dish-img').alt = dish.name;
+            document.getElementById('modal-dish-diet').innerHTML = getDietBadgeHTML(dish.isVeg);
+            document.getElementById('modal-dish-badge').textContent = dish.badge;
+            document.getElementById('modal-dish-rating').textContent = `${dish.rating} ★ (${dish.reviews})`;
+            document.getElementById('modal-dish-name').textContent = dish.name;
+            document.getElementById('modal-dish-price').textContent = `₹${dish.price}`;
+            document.getElementById('modal-dish-desc').textContent = dish.desc;
+            document.getElementById('modal-dish-spice').textContent = dish.spice;
+            document.getElementById('modal-dish-allergens').textContent = dish.allergens;
+
+            const addBtn = document.getElementById('modal-add-btn');
+            addBtn.onclick = () => {
+                addToShortlist(dish.id);
+                closeDishModal();
+            };
+
+            document.getElementById('dish-modal').classList.remove('hidden');
+        }
+
+        function closeDishModal() {
+            document.getElementById('dish-modal').classList.add('hidden');
+        }
+
+        // Table Shortlist Functions
+        function addToShortlist(id) {
+            const dish = menuData.find(d => d.id === id);
+            const existing = tableShortlist.find(item => item.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                tableShortlist.push({ ...dish, qty: 1 });
+            }
+            updateShortlistUI();
+            showToast(`Added "${dish.name}" to your Table Shortlist!`);
+        }
+
+        function updateShortlistQty(id, delta) {
+            const idx = tableShortlist.findIndex(item => item.id === id);
+            if (idx > -1) {
+                tableShortlist[idx].qty += delta;
+                if (tableShortlist[idx].qty <= 0) {
+                    tableShortlist.splice(idx, 1);
+                }
+            }
+            updateShortlistUI();
+        }
+
+        function updateShortlistUI() {
+            const countBadge = document.getElementById('shortlist-count');
+            const itemsContainer = document.getElementById('shortlist-items');
+            const totalEl = document.getElementById('shortlist-total');
+
+            const totalItems = tableShortlist.reduce((sum, i) => sum + i.qty, 0);
+            countBadge.textContent = totalItems;
+
+            if (tableShortlist.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="text-center py-12 px-4 rounded-2xl bg-jomato-bg border border-dashed border-gray-200">
+                        <div class="w-12 h-12 rounded-2xl bg-jomato-orangeLight text-jomato-orange flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="utensils" class="w-6 h-6"></i>
+                        </div>
+                        <p class="font-display font-bold text-sm text-jomato-charcoal">Your table shortlist is empty</p>
+                        <p class="text-xs text-jomato-slate mt-1">Shortlist dishes from the menu to plan your dine-in feast!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+            } else {
+                itemsContainer.innerHTML = tableShortlist.map(item => `
+                    <div class="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-jomato-bg border border-gray-100">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            ${getDietBadgeHTML(item.isVeg)}
+                            <div class="truncate">
+                                <h4 class="font-display font-bold text-sm text-jomato-charcoal truncate">${item.name}</h4>
+                                <span class="text-xs font-semibold text-jomato-slate">₹${item.price * item.qty}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white rounded-xl border border-gray-200 px-2 py-1 shrink-0">
+                            <button onclick="updateShortlistQty(${item.id}, -1)" class="w-5 h-5 text-jomato-slate hover:text-jomato-orange font-bold text-sm">-</button>
+                            <span class="text-xs font-extrabold text-jomato-charcoal w-4 text-center">${item.qty}</span>
+                            <button onclick="updateShortlistQty(${item.id}, 1)" class="w-5 h-5 text-jomato-veg font-bold text-sm">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const totalCost = tableShortlist.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            totalEl.textContent = `₹${totalCost}`;
+        }
+
+        function toggleShortlist() {
+            document.getElementById('shortlist-drawer').classList.toggle('hidden');
+        }
+
+        // Copy Offer Code with Clipboard Fallback
+        function copyOfferCode(code) {
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(`Offer code "${code}" copied! Mention it at your table.`);
+            } catch (err) {
+                showToast(`Use code "${code}" when seated at Jomato!`);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Time Slot Selector in Reservation Form
+        function selectTimeSlot(btn, slot) {
+            document.querySelectorAll('.time-pill').forEach(el => {
+                el.className = "time-pill py-2.5 px-3 rounded-xl text-xs font-bold bg-white border border-gray-200 text-jomato-charcoal hover:border-jomato-orange transition-all";
+            });
+            btn.className = "time-pill active py-2.5 px-3 rounded-xl text-xs font-bold bg-jomato-orange text-white border border-jomato-orange shadow-sm transition-all";
+            document.getElementById('selected-time').value = slot;
+        }
+
+        // Handle Table Reservation Submission
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value.trim();
+            const dateVal = document.getElementById('booking-date').value;
+            const timeVal = document.getElementById('selected-time').value;
+            const partyVal = document.getElementById('party-size').value;
+            const seatingVal = document.querySelector('input[name="seating"]:checked').value;
+
+            const randomRef = '#JMT-' + Math.floor(1000 + Math.random() * 9000);
+
+            document.getElementById('conf-code').textContent = randomRef;
+            document.getElementById('conf-name').textContent = name;
+            document.getElementById('conf-datetime').textContent = `${dateVal} at ${timeVal}`;
+            document.getElementById('conf-seating').textContent = `${partyVal} • ${seatingVal}`;
+
+            document.getElementById('reservation-form').classList.add('hidden');
+            document.getElementById('booking-confirmation').classList.remove('hidden');
+            lucide.createIcons();
+            showToast(`Table confirmed for ${name}! See you at Jomato.`);
+        }
+
+        function resetBookingForm() {
+            document.getElementById('reservation-form').reset();
+            document.getElementById('booking-date').value = todayStr;
+            document.getElementById('booking-confirmation').classList.add('hidden');
+            document.getElementById('reservation-form').classList.remove('hidden');
+        }
+
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            document.getElementById('mobile-nav').classList.toggle('hidden');
+        }
+
+        // Toast Notification Helper
+        function showToast(msg) {
+            const box = document.getElementById('toast-box');
+            const toast = document.createElement('div');
+            toast.className = "pointer-events-auto bg-jomato-charcoal text-white px-4 py-3.5 rounded-2xl shadow-xl border border-gray-800 text-xs sm:text-sm font-semibold flex items-center gap-2.5 transform translate-y-2 opacity-0 transition-all duration-300";
+            toast.innerHTML = `
+                <span class="w-2 h-2 rounded-full bg-jomato-orange shrink-0"></span>
+                <span>${msg}</span>
+            `;
+            box.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Initial Render
+        renderMenu();
+        updateShortlistUI();
+    </script>
+</body>
+</html>
